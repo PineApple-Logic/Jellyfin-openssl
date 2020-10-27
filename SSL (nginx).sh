@@ -12,7 +12,7 @@ read Domain
 
 #Port Forward
 echo 'Port forward 80 to 80 and 443 to 443'
-echo '( Must be done to pass the cert challenge )'
+echo '(Must be done to pass the cert challenge)'
 read
 
 #Get Certs
