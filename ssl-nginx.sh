@@ -38,6 +38,7 @@ echo----------------------------------------------------------------
 echo 'Check for errors. if error are any cancle (ctrl +c ) and report'
 echo----------------------------------------------------------------
 echo.
+echo press enter to continue
 read
 echo "0 0 * * *  root  certbot renew --quiet --no-self-upgrade --post-hook 'systemctl reload nginx'" | sudo tee -a /etc/cron.d/renew_certbot
 
@@ -50,4 +51,5 @@ echo.
 echo '2.change port forwarding to 8096 to 80 and 8920 to 443'
 echo.
 echo '3.Reboot'
+echo press enter to continue
 read
