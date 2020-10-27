@@ -32,7 +32,7 @@ sudo chowm jellyfin:jellyfin jellyfin.pfx
 #Check
 echo.
 echo----------------------------------------------------------------
-echo Check for errors. if error are any cancle (ctrl +c ) and report
+echo 'Check for errors. if error are any cancle (ctrl +c ) and report'
 echo----------------------------------------------------------------
 echo.
 read
