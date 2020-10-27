@@ -26,7 +26,7 @@ read path
 #Patch for Jellyfin
 clear
 cd $path
-openssl pkcs12 -export -out jellyfin.pfx -inkey privkey.pem -in $path/cert.pem -passout pass:
+openssl pkcs12 -export -out jellyfin.pfx -inkey $path/privkey.pem -in $path/cert.pem -passout pass:
 mkdir ~/Documents/openssl
 sudo mv jellyfin.pfx ~/Documents/openssl
 cd ~/Documents/openssl
