@@ -30,7 +30,7 @@ openssl pkcs12 -export -out jellyfin.pfx -inkey privkey.pem -in $path/cert.pem -
 mkdir ~/Documents/openssl
 sudo mv jellyfin.pfx ~/Documents/openssl
 cd ~/Documents/openssl
-sudo chowm jellyfin:jellyfin jellyfin.pfx
+sudo chown jellyfin:jellyfin jellyfin.pfx
 
 #Check
 echo .
