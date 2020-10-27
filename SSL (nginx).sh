@@ -4,20 +4,20 @@
 sudo apt install certbot python3-certbot-nginx
 
 #Pre-setup
-echo Email address
+echo 'Email address'
 read Email
 clear
-echo Domain
+echo 'Domain'
 read Domain
 
 #Port Forward
-echo Port forward 80 to 80 and 443 to 443
-echo ( Must be done to pass the cert challenge )
+echo 'Port forward 80 to 80 and 443 to 443'
+echo '( Must be done to pass the cert challenge )'
 read
 
 #Get Certs
 sudo certbot --nginx --agree-tos --redirect --hsts --staple-ocsp --email $Email -d $Domain --rsa-key-size 4096
-echo Enter cert.pem parth
+echo 'Enter cert.pem parth'
 read parth
 
 #Patch for Jellyfin
