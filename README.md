@@ -1,5 +1,6 @@
 # JellyfinSSL-Script
-This script is there to help you setup https for Jellyfin
+This script is there to help you setup https for Jellyfin.
+Please execute the script in a folder that is accessable by Jellyfin.
 
 NB: In order for this to work you need to have access to port fowarding on your router.
 
