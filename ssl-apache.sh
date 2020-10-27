@@ -23,14 +23,13 @@ sudo certbot --apache --agree-tos --redirect --hsts --staple-ocsp --email $Email
 echo 'Enter cert.pem path'
 read path
 
-#Patch for Jellyfin
+#Patch for jellyfin
 clear
-cd $path
-openssl pkcs12 -export -out jellyfin.pfx -inkey privkey.pem -in $path/cert.pem -passout pass:
-mkdir ~/Documents/openssl
-sudo mv jellyfin.pfx ~/Documents/openssl
-cd ~/Documents/openssl
-sudo chowm jellyfin:jellyfin jellyfin.pfx
+openssl pkcs12 -export -out jellyfin.pfx -inkey $path/privkey.pem -in $path/cert.pem -passout pass:
+mkdir ~/openssl
+sudo mv jellyfin.pfx ~/openssl
+cd ~/openssl
+sudo chown jellyfin:jellyfin jellyfin.pfx
 
 #Check
 echo
