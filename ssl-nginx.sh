@@ -2,6 +2,7 @@
 
 #Install requirments
 sudo apt install certbot python3-certbot-nginx
+clear
 
 #Pre-setup
 echo 'Email address'
@@ -9,11 +10,13 @@ read Email
 clear
 echo 'Domain'
 read Domain
+clear
 
 #Port Forward
 echo 'Port forward 80 to 80 and 443 to 443'
 echo '(Must be done to pass the cert challenge)'
 read
+clear
 
 #Get Certs
 sudo certbot --nginx --agree-tos --redirect --hsts --staple-ocsp --email $Email -d $Domain --rsa-key-size 4096
