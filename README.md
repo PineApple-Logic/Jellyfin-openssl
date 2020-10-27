@@ -3,7 +3,7 @@ This script is there to help you setup https for Jellyfin
 
 SETUP:
 
-git clone https://github.com/ReaperLogic/JellyfinSSL-Script.git
+git clone https://github.com/PineApple-Logic/JellyfinSSL-Script.git
 
 cd JellyfinSSL-Script/
 
