@@ -33,21 +33,21 @@ cd ~/Documents/openssl
 sudo chowm jellyfin:jellyfin jellyfin.pfx
 
 #Check
-echo.
-echo----------------------------------------------------------------
+echo .
+echo ----------------------------------------------------------------
 echo 'Check for errors. if error are any cancle (ctrl +c ) and report'
-echo----------------------------------------------------------------
-echo.
+echo ----------------------------------------------------------------
+echo .
 read
 echo "0 0 * * *  root  certbot renew --quiet --no-self-upgrade --post-hook 'systemctl reload nginx'" | sudo tee -a /etc/cron.d/renew_certbot
 
 #Reboot
 clear
-echo.
+echo .
 echo '1.Add the jellyfin.pfx file to your SSL cert path in jellyfin'
 echo    'also finish all other requirmentsin jelyfin Network https'
-echo.
+echo .
 echo '2.change port forwarding to 8096 to 80 and 8920 to 443'
-echo.
+echo .
 echo '3.Reboot'
 read
