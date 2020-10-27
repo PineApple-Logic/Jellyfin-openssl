@@ -20,13 +20,13 @@ clear
 
 #Get Certs
 sudo certbot --nginx --agree-tos --redirect --hsts --staple-ocsp --email $Email -d $Domain --rsa-key-size 4096
-echo 'Enter cert.pem parth'
-read parth
+echo 'Enter cert.pem path'
+read path
 
 #Patch for Jellyfin
 clear
-cd $parth
-openssl pkcs12 -export -out jellyfin.pfx -inkey privkey.pem -in $parth/cert.pem -passout pass:
+cd $path
+openssl pkcs12 -export -out jellyfin.pfx -inkey privkey.pem -in $path/cert.pem -passout pass:
 mkdir ~/Documents/openssl
 sudo mv jellyfin.pfx ~/Documents/openssl
 cd ~/Documents/openssl
