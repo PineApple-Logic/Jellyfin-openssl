@@ -7,8 +7,8 @@ git clone https://github.com/ReaperLogic/JellyfinSSL-Script.git
 
 cd JellyfinSSL-Script/
 
-chmod +x SSL\ \(nginx\).sh
+chmod +x ssl-nginx.sh
 
-./SSL\ \(nginx\).sh
+./ssl-nginx.sh
 
 Done
