@@ -50,4 +50,5 @@ echo .
 echo '2.change port forwarding to 8096 to 80 and 8920 to 443'
 echo .
 echo '3.Reboot'
+echo press enter to continue
 read
