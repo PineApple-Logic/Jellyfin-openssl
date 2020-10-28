@@ -8,12 +8,20 @@ With the ssl-apache.sh instead of ssl-nginx.sh
 
 NB: In order for this to work you need to have access to port fowarding on your router.
 
-SETUP:
+SETUP For nginx:
 ````bash
 git clone https://github.com/PineApple-Logic/JellyfinSSL-Script.git
 cd JellyfinSSL-Script/
-chmod +x ssl-nginx.sh (for nginx)
+chmod +x ssl-nginx.sh
 ./ssl-nginx.sh
+````
+
+SETUP For apache:
+````bash
+git clone https://github.com/PineApple-Logic/JellyfinSSL-Script.git
+cd JellyfinSSL-Script/
+chmod +x ssl-apache.sh
+./ssl-apache.sh
 ````
 
 Done
