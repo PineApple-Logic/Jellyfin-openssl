@@ -25,7 +25,7 @@ read path
 
 #Patch for jellyfin
 clear
-openssl pkcs12 -export -out jellyfin.pfx -inkey $path/privkey.pem -in $path/cert.pem -passout pass:
+sudo openssl pkcs12 -export -out jellyfin.pfx -inkey $path/privkey.pem -in $path/cert.pem -passout pass:
 mkdir ~/openssl
 sudo mv jellyfin.pfx ~/openssl
 cd ~/openssl
@@ -37,7 +37,7 @@ echo ------------------------------------------------------------------------
 echo 'Check for errors. if any error are found cancle (ctrl +c ) and report'
 echo ------------------------------------------------------------------------
 echo
-echo press enter to continue
+echo 'Press enter to continue'
 read
 echo "0 0 * * *  root  certbot renew --quiet --no-self-upgrade --post-hook 'systemctl reload apache'" | sudo tee -a /etc/cron.d/renew_certbot
 
@@ -45,10 +45,11 @@ echo "0 0 * * *  root  certbot renew --quiet --no-self-upgrade --post-hook 'syst
 clear
 echo
 echo '1.Add the jellyfin.pfx file to your SSL cert path in jellyfin'
-echo    'also finish all other requirmentsin jelyfin Network https'
+echo   'also finish all other requirmentsin jelyfin Network https'
 echo
 echo '2.change port forwarding to 8096 to 80 and 8920 to 443'
 echo
 echo '3.Reboot'
-echo press enter to continue
+echo
+echo 'Press enter to continue'
 read
