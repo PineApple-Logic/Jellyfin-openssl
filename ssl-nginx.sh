@@ -20,7 +20,7 @@ clear
 
 #Get Certs
 sudo certbot --nginx --agree-tos --redirect --hsts --staple-ocsp --email $Email -d $Domain --rsa-key-size 4096
-echo 'Enter cert.pem path'
+echo 'Enter cert.pem path to directory'
 read path
 
 #Patch for Jellyfin
