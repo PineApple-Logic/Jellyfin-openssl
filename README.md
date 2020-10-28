@@ -12,7 +12,7 @@ SETUP:
 ````bash
 git clone https://github.com/PineApple-Logic/JellyfinSSL-Script.git
 cd JellyfinSSL-Script/
-chmod +x ssl-nginx.sh
+chmod +x ssl-nginx.sh (for nginx)
 ./ssl-nginx.sh
 ````
 
