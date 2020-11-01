@@ -7,7 +7,7 @@ This script is there to help you setup https for Jellyfin.
 2. You also need to have a valid domain that is routing request to your public IP, of the decive jellyfin server is running on.
    We recommended [DuckDNS](https://duckdns.org) to setup one, if you don't already have one.
 
-<h3>SETUP For Nginx:</h3>
+SETUP For Nginx:
 ````bash
 git clone https://github.com/PineApple-Logic/JellyfinSSL-Script.git
 cd JellyfinSSL-Script/
@@ -15,7 +15,7 @@ chmod +x ssl-nginx.sh
 ./ssl-nginx.sh
 ````
 
-<h3>SETUP For Apache:</h3>
+SETUP For Apache:
 ````bash
 git clone https://github.com/PineApple-Logic/JellyfinSSL-Script.git
 cd JellyfinSSL-Script/
