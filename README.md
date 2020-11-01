@@ -15,7 +15,7 @@ chmod +x ssl-nginx.sh
 ./ssl-nginx.sh
 ````
 
-## OR ##
+### OR ###
 
 ### SETUP For Apache: ###
 ````bash
