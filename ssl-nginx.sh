@@ -34,7 +34,7 @@ sudo chown jellyfin:jellyfin jellyfin.pfx
 #Check
 echo
 echo ----------------------------------------------------------------
-echo 'Check for errors. If any error are found cancel (ctrl + c ) and report'
+echo 'Check for errors. If any errors are found, cancel (ctrl + c ) and report'
 echo ----------------------------------------------------------------
 echo
 echo 'Press enter to continue'
@@ -44,12 +44,12 @@ echo "0 0 * * *  root  certbot renew --quiet --no-self-upgrade --post-hook 'syst
 #Reboot
 clear
 echo
-echo '1.Add the jellyfin.pfx file to your SSL cert path in jellyfin'
+echo '1. Add the jellyfin.pfx file to your SSL cert path in jellyfin'
 echo   'also finish all other requirmentsin in jelyfin Network https'
 echo
-echo '2.Change port forwarding to 8096 to 80 and 8920 to 443'
+echo '2. Change port forwarding to 8096 to 80 and 8920 to 443'
 echo
-echo '3.Reboot'
+echo '3. Reboot'
 echo
 echo 'Press enter to continue'
 read
