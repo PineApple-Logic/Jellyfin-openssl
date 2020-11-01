@@ -1,7 +1,7 @@
 # JellyfinSSL-Script
 This script is there to help you setup https for Jellyfin.
 
-**Requirements**
+##**Requirements**##
 1. In order for this to work you need to have access to port fowarding on your router.
 
 2. You also need to have a valid domain that is routing request to your public IP, of the decive jellyfin server is running on.
