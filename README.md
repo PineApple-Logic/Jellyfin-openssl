@@ -15,6 +15,8 @@ chmod +x ssl-nginx.sh
 ./ssl-nginx.sh
 ````
 
+## OR ##
+
 ### SETUP For Apache: ###
 ````bash
 git clone https://github.com/PineApple-Logic/JellyfinSSL-Script.git
