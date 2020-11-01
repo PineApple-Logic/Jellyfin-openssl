@@ -5,7 +5,7 @@ You need to have a valid domain that is routing request to the IP with your jell
 
 NB: In order for this to work you need to have access to port fowarding on your router.
 
-SETUP For nginx:
+SETUP For Nginx:
 ````bash
 git clone https://github.com/PineApple-Logic/JellyfinSSL-Script.git
 cd JellyfinSSL-Script/
@@ -13,7 +13,7 @@ chmod +x ssl-nginx.sh
 ./ssl-nginx.sh
 ````
 
-SETUP For apache:
+SETUP For Apache:
 ````bash
 git clone https://github.com/PineApple-Logic/JellyfinSSL-Script.git
 cd JellyfinSSL-Script/
