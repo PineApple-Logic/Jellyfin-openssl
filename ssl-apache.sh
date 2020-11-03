@@ -45,7 +45,7 @@ echo "0 0 * * *  root  certbot renew --quiet --no-self-upgrade --post-hook 'syst
 clear
 echo
 echo '1. Add the jellyfin.pfx file to your SSL cert path in jellyfin,'
-echo   'also finish all other requirments in in jelyfin Network https'
+echo   'also finish all other requirments in jelyfin Network https'
 echo
 echo '2. Change port forwarding to 8096 to 80 and 8920 to 443'
 echo
