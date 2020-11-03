@@ -15,6 +15,8 @@ clear
 #Port Forward
 echo 'Port forward 80 to 80 and 443 to 443'
 echo '(Must be done to pass the cert challenge)'
+echo
+echo 'Press enter to continue'
 read
 clear
 
