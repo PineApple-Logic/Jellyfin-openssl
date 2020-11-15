@@ -35,9 +35,9 @@ sudo chown jellyfin:jellyfin jellyfin.pfx
 
 #Check
 echo
-echo ----------------------------------------------------------------
+echo --------------------------------------------------------------------------
 echo 'Check for errors. If any errors are found, cancel (ctrl + c ) and report'
-echo ----------------------------------------------------------------
+echo --------------------------------------------------------------------------
 echo
 echo 'Press enter to continue'
 read
