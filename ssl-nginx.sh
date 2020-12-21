@@ -67,5 +67,5 @@ echo '2. Change port forwarding to 8096 to 80 and 8920 to 443'
 echo
 echo '3. Restart Jellyfin'
 echo
-echo 'Press enter to continue'
+echo 'Press enter to exit'
 read
