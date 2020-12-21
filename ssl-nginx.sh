@@ -22,6 +22,7 @@ clear
 
 #Get Certs
 sudo certbot --nginx --agree-tos --redirect --hsts --staple-ocsp --email $Email -d $Domain --rsa-key-size 4096
+clear
 if [ -e /etc/letsencrypt/live/$Domain/cert.pem ]
   then
     echo
