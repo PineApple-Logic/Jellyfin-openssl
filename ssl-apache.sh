@@ -45,9 +45,9 @@ sudo chown jellyfin:jellyfin $path/jellyfin.pfx
 
 #Check
 echo
-echo ------------------------------------------------------------------------
+echo --------------------------------------------------------------------------
 echo 'Check for errors. If any errors are found, cancel (ctrl + c ) and report'
-echo ------------------------------------------------------------------------
+echo --------------------------------------------------------------------------
 echo
 echo 'Press enter to continue'
 read
@@ -65,7 +65,7 @@ echo   'also finish all other requirments in jelyfin Network https'
 echo
 echo '2. Change port forwarding to 8096 to 80 and 8920 to 443'
 echo
-echo '3. Reboot'
+echo '3. Restart Jellyfin'
 echo
 echo 'Press enter to exit'
 read
