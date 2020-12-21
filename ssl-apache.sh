@@ -32,6 +32,7 @@ if [ -e /etc/letsencrypt/live/$Domain/cert.pem ]
   else
     echo "Failed to create certificate."
     echo "Recommende checking for any miss entries on your router before trying again."
+    sleep 2s
     pause
     exit
 fi
