@@ -25,12 +25,12 @@ sudo certbot --nginx --agree-tos --redirect --hsts --staple-ocsp --email $Email 
 if [ -e /etc/letsencrypt/live/$Domain/cert.pem ]
   then
     echo
-    echo "certificate successfully created"
+    echo "Certificate successfully created"
     echo
     sleep 2s
   else
     echo "Failed to create certificate."
-    echo "recommende checking for any miss entries on your router before trying again."
+    echo "Recommende checking for any miss entries on your router before trying again."
     pause
     exit
 fi
