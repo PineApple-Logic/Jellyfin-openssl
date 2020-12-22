@@ -33,7 +33,7 @@ if [ -e /etc/letsencrypt/live/$Domain/cert.pem ]
     echo "Failed to create certificate."
     echo "Recommende checking for any miss entries on your router before trying again."
     sleep 2s
-    pause
+    read
     exit
 fi
 echo 'Please enter directory path where you want to save your certificate (Jellyfin must have access to this directory)'
