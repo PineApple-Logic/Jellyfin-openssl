@@ -31,8 +31,13 @@ if sudo [ -e /etc/letsencrypt/live/$Domain/cert.pem ]
     sleep 2s
   else
     echo "Failed to create certificate."
-    echo "Recommende checking for any miss entries on your router before trying again."
+    echo
+    echo "Troubleshoot list:"
+    echo "1. Check for miss entries on the router"
+    echo "2. Make sure nothing but Nginx is running on port 80 (netstat -tulpn)"
     sleep 2s
+    echo
+    echo "Press enter to exit"
     read
     exit
 fi
