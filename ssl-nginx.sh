@@ -22,6 +22,20 @@ clear
 
 #Get Certs
 sudo certbot --nginx --agree-tos --redirect --hsts --staple-ocsp --email $Email -d $Domain --rsa-key-size 4096
+clear
+if [ -e /etc/letsencrypt/live/$Domain/cert.pem ]
+  then
+    echo
+    echo "Certificate successfully created"
+    echo
+    sleep 2s
+  else
+    echo "Failed to create certificate."
+    echo "Recommende checking for any miss entries on your router before trying again."
+    sleep 2s
+    pause
+    exit
+fi
 echo 'Please enter directory path where you want to save your certificate (Jellyfin must have access to this directory)'
 read path
 
@@ -55,5 +69,5 @@ echo '2. Change port forwarding to 8096 to 80 and 8920 to 443'
 echo
 echo '3. Restart Jellyfin'
 echo
-echo 'Press enter to continue'
+echo 'Press enter to exit'
 read
