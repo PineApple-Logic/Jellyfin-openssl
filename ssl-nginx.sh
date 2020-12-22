@@ -23,7 +23,7 @@ clear
 #Get Certs
 sudo certbot --nginx --agree-tos --redirect --hsts --staple-ocsp --email $Email -d $Domain --rsa-key-size 4096
 clear
-sudo if [ -e /etc/letsencrypt/live/$Domain/cert.pem ]
+if sudo [ -e /etc/letsencrypt/live/$Domain/cert.pem ]
   then
     echo
     echo "Certificate successfully created"
