@@ -1,6 +1,7 @@
 # JellyfinSSL-Script
 This script is there to help you setup https for Jellyfin.
 This script only work on linux (for now) a windows version is being worked on.
+The script also adds a task to automatically renewal the certificates.
 
 ### **Requirements** ###
 1. In order for this to work you need to have access to port fowarding on your router.
