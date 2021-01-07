@@ -34,7 +34,8 @@ if sudo [ -e /etc/letsencrypt/live/$Domain/cert.pem ]
     echo
     echo "Troubleshoot list:"
     echo "1. Check for miss entries on the router"
-    echo "2. Make sure nothing but Nginx is running on port 80 (netstat -tulpn)"
+    echo "2. Make sure Apache is running on port 80 (netstat -tulpn) else"
+    echo    "change it on the router to the port it is running on"
     sleep 2s
     echo
     echo "Press enter to exit"
@@ -49,15 +50,22 @@ clear
 sudo openssl pkcs12 -export -out jellyfin.pfx -inkey /etc/letsencrypt/live/$Domain/privkey.pem -in /etc/letsencrypt/live/$Domain/cert.pem -passout pass:
 sudo cp jellyfin.pfx $path
 sudo chown jellyfin:jellyfin $path/jellyfin.pfx
+if sudo [ -e $path/jellyfin.pfx ]
+  then
+    echo
+    echo "Jellyfin cert patch successfully"
+    echo
+  else
+    echo
+    echo "Failed to patch certificate for Jellyfin."
+   sleep 2s
+    echo
+    echo "Press enter to exit"
+    read
+    exit
+fi
 
-#Check
-echo
-echo --------------------------------------------------------------------------
-echo 'Check for errors. If any errors are found, cancel (ctrl + c ) and report'
-echo --------------------------------------------------------------------------
-echo
-echo 'Press enter to continue'
-read
+#Autmated renewal
 echo "0 0 1 */2 *  root  certbot renew --quiet --no-self-upgrade --post-hook 'systemctl reload nginx'" | sudo tee -a /etc/cron.d/renew_certbot
 echo "1 0 1 */2 * sudo openssl pkcs12 -export -out /etc/letsencrypt/live/$Domain/jellyfin.pfx -inkey /etc/letsencrypt/live/$Domain/privkey.pem -in /etc/letsencrypt/live/$Domain/cert.pem -passout pass:" | sudo tee -a /etc/cron.d/renew_certbot
 echo "2 0 1 */2 * cp /etc/letsencrypt/live/$Domain/jellyfin.pfx $path/jellyfin.pfx" | sudo tee -a /etc/cron.d/renew_certbot
