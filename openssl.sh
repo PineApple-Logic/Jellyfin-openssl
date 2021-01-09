@@ -29,7 +29,7 @@ do
     fi
 done
 sudo $pman install certbot python3-certbot-$ser
-read
+sleep 1s
 clear
 
 #Port Forward
@@ -61,7 +61,7 @@ fi
 echo 'Please enter a directory path where you want to save your certificate'
 echo '(Jellyfin must have access to this directory)'
 echo
-read path
+read -p 'Directory:' path
 
 #Patch for Jellyfin
 clear
