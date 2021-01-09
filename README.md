@@ -8,22 +8,10 @@ This script only work on linux (for now) a windows version is being worked on.
 2. You also need to have a valid domain that is routing request to your public IP, of the device jellyfin server is running on.
    We recommend [DuckDNS](https://duckdns.org) to setup one, if you don't already have one.
 
-### SETUP For Nginx: ####
+### SETUP: ####
 ````bash
 git clone https://github.com/PineApple-Logic/JellyfinSSL-Script.git
 cd JellyfinSSL-Script/
-chmod +x ssl-nginx.sh
-./ssl-nginx.sh
+chmod +x openssl.sh
+./openssl.sh
 ````
-
-### OR ###
-
-### SETUP For Apache: ###
-````bash
-git clone https://github.com/PineApple-Logic/JellyfinSSL-Script.git
-cd JellyfinSSL-Script/
-chmod +x ssl-apache.sh
-./ssl-apache.sh
-````
-
-Done
