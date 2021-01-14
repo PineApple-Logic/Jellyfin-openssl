@@ -1,6 +1,7 @@
 #!/bin/bash
 
 #Pre-setup
+clear
 echo '1.Apache or 2.Nginx'
 echo
 read -p 'Enter a Number:' num
