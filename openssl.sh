@@ -10,7 +10,7 @@ if [ $num = 1 ]
   else
    if [ $num = 2 ]
     then
-      ser=Nginx
+      ser=nginx
     else
       echo 'error invalid number. Please try again.'
       read -p 'Press Enter to exit'
