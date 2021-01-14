@@ -12,11 +12,13 @@ if [ $num = 1 ]
     then
       ser=nginx
     else
+      clear
       echo 'error invalid number. Please try again.'
       read -p 'Press Enter to exit'
       exit
     fi
  fi
+echo
 read -p 'Email address:' Email
 echo
 read -p 'Domain:' Domain
