@@ -25,7 +25,7 @@ echo
 read -p 'Domain:' Domain
 clear
 
-#Install requirments
+#Installing requirments
 declare -A osInfo;
 osInfo[/etc/redhat-release]=yum
 osInfo[/etc/arch-release]=pacman
