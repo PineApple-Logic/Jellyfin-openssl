@@ -8,8 +8,15 @@ if [ $num = 1 ]
   then
     ser=apache
   else
-   ser=nginx
-fi
+   if [ $num = 2 ]
+    then
+      ser=Nginx
+    else
+      echo 'error invalid number. Please try again.'
+      read -p 'Press Enter to exit'
+      exit
+    fi
+ fi
 read -p 'Email address:' Email
 echo
 read -p 'Domain:' Domain
