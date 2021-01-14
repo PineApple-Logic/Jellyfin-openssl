@@ -38,6 +38,7 @@ do
         pman=${osInfo[$f]}
     fi
 done
+echo 'Installing certbot'
 sudo $pman install certbot python3-certbot-$ser
 sleep 1s
 clear
