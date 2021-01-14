@@ -2,6 +2,16 @@
 
 #Pre-setup
 clear
+
+
+#nginx=which nginx
+#echo $nginx
+#if [$nginx = '/usr/bin/nginx']
+#apache=which apache
+#echo $apache
+#of [$nginx = '/usr/bin/nginx']
+
+
 echo '1.Apache or 2.Nginx'
 echo
 read -p 'Enter a Number:' num
