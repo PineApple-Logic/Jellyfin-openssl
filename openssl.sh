@@ -48,7 +48,7 @@ do
 done
 echo 'Installing certbot'
 sudo $pman install certbot python3-certbot-$ser
-if [ -f /usr/bin/certbot ]
+if [ -f /usr/bin/certbot && -f /usr/bin/python3-certbot-$ser ]
   then
     clear
   else
