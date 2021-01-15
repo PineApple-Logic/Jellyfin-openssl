@@ -40,7 +40,7 @@ do
     else
       clear
       echo
-      echo 'Failed to find your Package Manager'
+      echo 'Failed to identify your Package Manager'
       echo 'Please Enter it below'
       echo
       read -p 'Package Manager:' pman
