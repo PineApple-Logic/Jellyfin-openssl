@@ -14,9 +14,9 @@ if [ $num = 1 ]
       ser=nginx
     else
       clear
-      echo 'error invalid number. Please try again.'
-      read -p 'Press Enter to exit'
-      exit
+      echo 'Error invalid number.'
+      sleep 2s
+      ./openssl.sh
     fi
  fi
 echo
@@ -26,22 +26,39 @@ read -p 'Domain:' Domain
 clear
 
 #Installing requirments
-declare -A osInfo;
-osInfo[/etc/redhat-release]=yum
-osInfo[/etc/arch-release]=pacman
-osInfo[/etc/gentoo-release]=emerge
-osInfo[/etc/SuSE-release]=zypp
-osInfo[/etc/debian_version]=apt
+declare -A osinfo;
+osinfo[/etc/redhat-release]=yum
+osinfo[/etc/arch-release]=pacman
+osinfo[/etc/gentoo-release]=emerge
+osinfo[/etc/SuSE-release]=zypp
+osinfo[/etc/debian_version]=apt
 for f in ${!osInfo[@]}
 do
-    if [[ -f $f ]];then
+    if [ -f ${!osInfo[$f]} ]
+    then
         pman=${osInfo[$f]}
+    else
+      clear
+      echo
+      echo 'Failed to find your Package Manager'
+      echo 'Please Enter it below'
+      echo
+      read -p 'Package Manager:' pman
     fi
 done
 echo 'Installing certbot'
 sudo $pman install certbot python3-certbot-$ser
-sleep 1s
-clear
+check=$(which certbot)
+if [ $check = /usr/bin/certbot ]
+  then
+    clear
+  else
+    echo
+    echo 'Failed to install cerbot'
+    echo "Try to install certbot and phython3-cerbot-$ser manually"
+    echo
+    exit
+fi
 
 #Port Forward
 echo 'Port forward 80 to 80 and 443 to 443'
@@ -56,18 +73,15 @@ clear
 if [ -e /etc/letsencrypt/live/$Domain/cert.pem ]
   then
     echo
-    echo "Certificate successfully created"
+    echo 'Certificate successfully created'
     echo
-    sleep 2s
+    sleep 1s
   else
-    echo "Failed to create certificate."
-    echo "Troubleshoot list:"
-    echo "1. Check for miss entries on the router"
+    echo 'Failed to create certificate.'
+    echo 'Troubleshoot list:'
+    echo '1. Check for miss entries on the router'
     echo "2. Make sure $ser is running on port 80 (netstat -tulpn) else"
-    echo    "change the LAN port forwarding on the router to the port it is running on"
-    sleep 2s
-    read
-    exit
+    echo    'change the LAN port forwarding on the router to the port it is running on'
 fi
 echo 'Please enter a directory path where you want to save your certificate'
 echo '(Jellyfin must have access to this directory)'
@@ -82,15 +96,11 @@ sudo chown jellyfin:jellyfin $path/jellyfin.pfx
 if sudo [ -e $path/jellyfin.pfx ]
   then
     echo
-    echo "Jellyfin cert patch successfully"
+    echo 'Jellyfin cert patch successfully'
     echo
   else
     echo
-    echo "Failed to patch certificate for Jellyfin."
-   sleep 2s
-    echo
-    echo "Press enter to exit"
-    read
+    echo 'Failed to patch certificate for Jellyfin.'
     exit
 fi
 
@@ -100,9 +110,16 @@ echo "1 0 1 */2 * sudo openssl pkcs12 -export -out /etc/letsencrypt/live/$Domain
 echo "2 0 1 */2 * cp /etc/letsencrypt/live/$Domain/jellyfin.pfx $path/jellyfin.pfx" | sudo tee -a /etc/cron.d/renew_certbot
 echo "3 0 1 */2 * sudo chown jellyfin:jellyfin $path/jellyfin.pfx" | sudo tee -a /etc/cron.d/renew_certbot
 echo "4 0 1 */2 *  sudo systemctl restart jellyfin.service" | sudo tee -a /etc/cron.d/renew_certbot
+if [ -f  /etc/cron.d/renew_certbot ]
+  then
+    clear
+  else
+    echo
+    echo 'Failed to create automated certificate renewal'
+    echo
+    read -p 'Press Enter if you wish to leave it and continue'
 
 #Reboot
-clear
 echo
 echo '1. Add the jellyfin.pfx file to your SSL cert path in jellyfin,'
 echo   'also finish all other requirments in jelyfin Network https'
@@ -111,5 +128,4 @@ echo '2. Change port forwarding to 8096 to 80 and 8920 to 443'
 echo
 echo '3. Restart Jellyfin'
 echo
-echo 'Press enter to exit'
-read
+exit
