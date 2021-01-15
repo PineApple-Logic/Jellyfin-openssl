@@ -48,8 +48,7 @@ do
 done
 echo 'Installing certbot'
 sudo $pman install certbot python3-certbot-$ser
-check=$(which certbot)
-if [ $check = /usr/bin/certbot ]
+if [ -f /usr/bin/certbot ]
   then
     clear
   else
@@ -118,6 +117,7 @@ if [ -f  /etc/cron.d/renew_certbot ]
     echo 'Failed to create automated certificate renewal'
     echo
     read -p 'Press Enter if you wish to leave it and continue'
+    clear
 
 #Reboot
 echo
