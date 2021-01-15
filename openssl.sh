@@ -34,7 +34,7 @@ osinfo[/etc/SuSE-release]=zypp
 osinfo[/etc/debian_version]=apt
 for f in ${!osinfo[@]}
 do
-    if [ -f ${!osinfo[$f]} ]
+    if [ -f /bin/${!osinfo[$f]} ]
     then
         pman=${osinfo[$f]}
     else
