@@ -32,11 +32,11 @@ osinfo[/etc/arch-release]=pacman
 osinfo[/etc/gentoo-release]=emerge
 osinfo[/etc/SuSE-release]=zypp
 osinfo[/etc/debian_version]=apt
-for f in ${!osInfo[@]}
+for f in ${!osinfo[@]}
 do
-    if [ -f ${!osInfo[$f]} ]
+    if [ -f ${!osinfo[$f]} ]
     then
-        pman=${osInfo[$f]}
+        pman=${osinfo[$f]}
     else
       clear
       echo
