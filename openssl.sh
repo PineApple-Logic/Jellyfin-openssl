@@ -64,7 +64,7 @@ if [ -e /etc/letsencrypt/live/$Domain/cert.pem ]
     echo "Troubleshoot list:"
     echo "1. Check for miss entries on the router"
     echo "2. Make sure $ser is running on port 80 (netstat -tulpn) else"
-    echo    "change it on the router to the port it is running on"
+    echo    "change the LAN port forwarding on the router to the port it is running on"
     sleep 2s
     read
     exit
