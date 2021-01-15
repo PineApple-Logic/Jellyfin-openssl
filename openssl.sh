@@ -4,12 +4,10 @@
 clear
 
 
-#nginx=which nginx
-#echo $nginx
-#if [$nginx = '/usr/bin/nginx']
-#apache=which apache
-#echo $apache
-#of [$nginx = '/usr/bin/nginx']
+nginx=$(which nginx)
+if [$nginx = '/usr/bin/nginx']
+apache=$(which apache)
+if [$nginx = '/usr/bin/nginx']
 
 
 echo '1.Apache or 2.Nginx'
@@ -105,11 +103,11 @@ if sudo [ -e $path/jellyfin.pfx ]
 fi
 
 #Automated renewal
-echo "0 0 1 */2 *  root  certbot renew --quiet --no-self-upgrade --post-hook 'systemctl reload $ser'" | sudo tee -a /etc/cron.d/renew_certbot
-echo "1 0 1 */2 * sudo openssl pkcs12 -export -out /etc/letsencrypt/live/$Domain/jellyfin.pfx -inkey /etc/letsencrypt/live/$Domain/privkey.pem -in /etc/letsencrypt/live/$Domain/cert.pem -passout pass:" | sudo tee -a /etc/cron.d/renew_certbot
-echo "2 0 1 */2 * cp /etc/letsencrypt/live/$Domain/jellyfin.pfx $path/jellyfin.pfx" | sudo tee -a /etc/cron.d/renew_certbot
-echo "3 0 1 */2 * sudo chown jellyfin:jellyfin $path/jellyfin.pfx" | sudo tee -a /etc/cron.d/renew_certbot
-echo "4 0 1 */2 *  sudo systemctl restart jellyfin.service" | sudo tee -a /etc/cron.d/renew_certbot
+echo "0 0 * * 1 root certbot renew --quiet --no-self-upgrade --post-hook 'systemctl reload $ser'" | sudo tee -a /etc/cron.d/renew_certbot
+echo "0 0 * * 1 root openssl pkcs12 -export -out /etc/letsencrypt/live/$Domain/jellyfin.pfx -inkey /etc/letsencrypt/live/$Domain/privkey.pem -in /etc/letsencrypt/live/$Domain/cert.pem -passout pass:" | sudo tee -a /etc/cron.d/renew_certbot
+echo "0 0 * * 1 cp /etc/letsencrypt/live/$Domain/jellyfin.pfx $path/jellyfin.pfx" | sudo tee -a /etc/cron.d/renew_certbot
+echo "0 0 * * 1 root chown jellyfin:jellyfin $path/jellyfin.pfx" | sudo tee -a /etc/cron.d/renew_certbot
+echo "0 0 * * 1 root systemctl restart jellyfin.service" | sudo tee -a /etc/cron.d/renew_certbot
 
 #Reboot
 clear
