@@ -77,6 +77,7 @@ if [ -e /etc/letsencrypt/live/$Domain/cert.pem ]
     sleep 1s
   else
     echo 'Failed to create certificate.'
+    echo
     echo 'Troubleshoot list:'
     echo '1. Check for miss entries on the router'
     echo "2. Make sure $ser is running on port 80 (netstat -tulpn) else"
