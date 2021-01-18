@@ -3,6 +3,8 @@
 #Pre-setup
 clear
 
+#If we already know the location what is the point of 'which' can't we just use -f
+#in the [], meaning if exists
 
 #nginx=$(which nginx)
 #if [$nginx = '/usr/bin/nginx']
