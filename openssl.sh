@@ -67,7 +67,12 @@ read -p 'Press enter to continue'
 clear
 
 #Get Certs
-sudo certbot --$ser --agree-tos --redirect --hsts --staple-ocsp --email $Email -d $Domain --rsa-key-size 4096
+if [ $num = 1 ]
+then
+  certbot certonly --apache --noninteractive --agree-tos --email $email -d $domain
+else
+  sudo certbot --nginx --agree-tos --redirect --hsts --staple-ocsp --email $email -d $domain
+fi
 clear
 if [ -e /etc/letsencrypt/live/$Domain/cert.pem ]
   then
