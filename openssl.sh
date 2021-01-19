@@ -82,6 +82,7 @@ if [ $num =  1 ]
     certbot certonly --apache --noninteractive --agree-tos --email $email -d $domain
   else
     sudo certbot --nginx --agree-tos --redirect --hsts --staple-ocsp --email $email -d $domain
+fi
 clear
 if [ -e /etc/letsencrypt/live/$Domain/cert.pem ]
   then
