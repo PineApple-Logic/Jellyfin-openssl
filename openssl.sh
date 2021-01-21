@@ -3,8 +3,9 @@
 #Pre-setup
 clear
 
-#If we already know the location what is the point of 'which' can't we just use -f
-#in the [], meaning if exists
+#if [ -f '/usr/bin/nginx' ] fi
+#if [ -f '/usr/bin/nginx' ] fi
+
 
 #nginx=$(which nginx)
 #if [$nginx = '/usr/bin/nginx']
@@ -37,11 +38,11 @@ clear
 
 #Installing requirments
 declare -A osinfo;
-osinfo[/etc/redhat-release]=yum
-osinfo[/etc/arch-release]=pacman
-osinfo[/etc/gentoo-release]=emerge
-osinfo[/etc/SuSE-release]=zypp
-osinfo[/etc/debian_version]=apt
+osinfo['/etc/redhat-release']=yum
+osinfo['/etc/arch-release']=pacman
+osinfo['/etc/gentoo-release']=emerge
+osinfo['/etc/SuSE-release']=zypp
+osinfo['/etc/debian_version']=apt
 for f in ${!osInfo[@]}
 do
     if [ -f /bin/${!osInfo[$f]} ]
@@ -58,7 +59,7 @@ do
 done
 echo 'Installing certbot'
 sudo $pman install certbot python3-certbot-$ser
-if [ -f /usr/bin/certbot && -f /usr/bin/python3-certbot-$ser ]
+if [ -f "/usr/bin/certbot && -f /usr/bin/python3-certbot-$ser" ]
   then
     clear
   else
@@ -84,7 +85,7 @@ if [ $num =  1 ]
     sudo certbot --nginx --agree-tos --redirect --hsts --staple-ocsp --email $email -d $domain
 fi
 clear
-if [ -e /etc/letsencrypt/live/$Domain/cert.pem ]
+if [ -e "/etc/letsencrypt/live/$Domain/cert.pem" ]
   then
     echo
     echo 'Certificate successfully created'
@@ -108,7 +109,7 @@ clear
 sudo openssl pkcs12 -export -out jellyfin.pfx -inkey /etc/letsencrypt/live/$Domain/privkey.pem -in /etc/letsencrypt/live/$Domain/cert.pem -passout pass:
 sudo mv jellyfin.pfx $path
 sudo chown jellyfin:jellyfin $path/jellyfin.pfx
-if sudo [ -e $path/jellyfin.pfx ]
+if sudo [ -e "$path/jellyfin.pfx" ]
   then
     echo
     echo 'Jellyfin cert patch successfully'
