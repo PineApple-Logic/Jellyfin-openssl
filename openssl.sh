@@ -124,6 +124,7 @@ if [ -f  /etc/cron.d/renew_certbot ]
     echo
     read -p 'Press Enter if you wish to leave it and continue'
     clear
+fi
 
 #Reboot
 echo
