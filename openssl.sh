@@ -69,7 +69,7 @@ fi
 
 
 #Port Forward
-sudo netstat -anp | grep $ser | awk 'NR==1{print $4}' | grep -Eo '[0-9]{1,4}' >> port.txt
+sudo netstat -anp | grep $ser | awk 'NR==1{print $4}' | grep -Eo '[0-9]{1,4}' | tail -1  >> port.txt
 port=$(<port.txt)
 if [ -s port.txt ]
   then
