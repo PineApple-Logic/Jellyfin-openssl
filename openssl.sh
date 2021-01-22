@@ -48,8 +48,8 @@ if [ -s pg.txt ]
   else
     rm -fr pg.txt
     clear
-    echo Failed to identify your package Manager
-    echo Please enter it below
+    echo 'Failed to identify your package Manager'
+    echo 'Please enter it below'
     echo
     read -p 'Package Manager:' pman
 fi
