@@ -26,26 +26,30 @@ read -p 'Domain:' Domain
 clear
 
 #Installing requirments
-declare -A osinfo;
-osinfo[/etc/redhat-release]=yum
-osinfo[/etc/arch-release]=pacman
-osinfo[/etc/gentoo-release]=emerge
-osinfo[/etc/SuSE-release]=zypp
-osinfo[/etc/debian_version]=apt
-for f in ${!osinfo[@]}
+declare -A osInfo;
+osInfo[/etc/redhat-release]=yum
+osInfo[/etc/arch-release]=pacman
+osInfo[/etc/gentoo-release]=emerge
+osInfo[/etc/SuSE-release]=zypp
+osInfo[/etc/debian_version]=apt
+
+for f in ${!osInfo[@]}
 do
-    if [ -f /bin/${!osinfo[$f]} ]
-    then
-        pman=${osinfo[$f]}
-    else
-      clear
-      echo
-      echo 'Failed to identify your Package Manager'
-      echo 'Please Enter it below'
-      echo
-      read -p 'Package Manager:' pman
+    if [[ -f $f ]];then
+      pman=${osInfo[$f]}
+
     fi
 done
+if [ -f /usr/local/bin/$pman ]
+  then
+    clear
+  else
+    clear
+    echo Failed to identify your package Manager
+    echo Please enter it below
+    echo
+    read -p 'Package Manager:' pman
+fi
 echo 'Installing certbot'
 sudo $pman install certbot python3-certbot-$ser
 if [ -f /usr/bin/certbot ]
@@ -59,12 +63,27 @@ if [ -f /usr/bin/certbot ]
     exit
 fi
 
+
+
 #Port Forward
-echo 'Port forward 80 to 80 and 443 to 443'
-echo '(Must be done to pass the cert challenge)'
-echo
-read -p 'Press enter to continue'
-clear
+sudo netstat -anp | grep $ser | awk 'NR==1{print $4}' | grep -Eo '[0-9]{1,4}' >> port.txt
+port=$(<port.txt)
+if [ -s port.txt ]
+  then
+    rm -fr port.txt
+    clear
+    echo "Port forward $port to 80 on your router."
+    echo 'must be done to pass the cert test'
+    echo
+    read -p 'Press Enter to continue'
+  else
+    rm -fr port.txt
+    clear
+    echo "Failed to fined which port number $ser is running on"
+    echo
+    echo "Make sure $ser is running then try again"
+    exit
+fi
 
 #Get Certs
 if [ $num = 1 ]
