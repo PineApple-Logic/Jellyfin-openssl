@@ -20,9 +20,9 @@ if [ $num = 1 ]
     fi
  fi
 echo
-read -p 'Email address:' Email
+read -p 'Email address:' email
 echo
-read -p 'Domain:' Domain
+read -p 'Domain:' domain
 clear
 
 #Installing requirments
@@ -70,6 +70,7 @@ fi
 
 #Port Forward
 sudo netstat -anp | grep $ser | awk 'NR==1{print $4}' | grep -Eo '[0-9]{1,4}' | tail -1  >> port.txt
+sudo netstat -anp | grep $ser | awk 'NR==1{print $4}' | grep -Eo '[0-9]{1,4}' | tail -1  >> port2.txt
 port=$(<port.txt)
 if [ -s port.txt ]
   then
@@ -91,13 +92,13 @@ fi
 #Get Certs
 if [ $num = 1 ]
 then
-  certbot certonly --apache --noninteractive --agree-tos --email $email -d $domain
+  sudo certonly --apache --noninteractive --agree-tos --email $email -d $domain
 else
   sudo certbot --nginx --agree-tos --redirect --hsts --staple-ocsp --email $email -d $domain
 fi
-clear
 if [ -e /etc/letsencrypt/live/$Domain/cert.pem ]
   then
+    clear
     echo
     echo 'Certificate successfully created'
     echo
