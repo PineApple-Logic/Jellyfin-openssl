@@ -70,7 +70,6 @@ fi
 
 #Port Forward
 sudo netstat -anp | grep $ser | awk 'NR==1{print $4}' | grep -Eo '[0-9]{1,4}' | tail -1  >> port.txt
-sudo netstat -anp | grep $ser | awk 'NR==1{print $4}' | grep -Eo '[0-9]{1,4}' | tail -1  >> port2.txt
 port=$(<port.txt)
 if [ -s port.txt ]
   then
@@ -85,7 +84,8 @@ if [ -s port.txt ]
     clear
     echo "Failed to fined which port number $ser is running on"
     echo
-    echo "Make sure $ser is running then try again"
+    echo "Make sure $ser is running"
+    echo "Try changing the port it is running on."
     exit
 fi
 
@@ -96,7 +96,7 @@ then
 else
   sudo certbot --nginx --agree-tos --redirect --hsts --staple-ocsp --email $email -d $domain
 fi
-if [ -e /etc/letsencrypt/live/$Domain/cert.pem ]
+if sudo [ -e /etc/letsencrypt/live/$domain/cert.pem ]
   then
     clear
     echo
@@ -112,15 +112,18 @@ fi
 echo 'Please enter a directory path where you want to save your certificate'
 echo '(Jellyfin must have access to this directory)'
 echo
+echo 'Example /home/%username$/openssl'
 read -p 'Directory:' path
 
 #Patch for Jellyfin
 clear
-sudo openssl pkcs12 -export -out jellyfin.pfx -inkey /etc/letsencrypt/live/$Domain/privkey.pem -in /etc/letsencrypt/live/$Domain/cert.pem -passout pass:
+sudo openssl pkcs12 -export -out jellyfin.pfx -inkey /etc/letsencrypt/live/$domain/privkey.pem -in /etc/letsencrypt/live/$domain/cert.pem -passout pass:
+mkdir $path
 sudo mv jellyfin.pfx $path
 sudo chown jellyfin:jellyfin $path/jellyfin.pfx
 if sudo [ -e $path/jellyfin.pfx ]
   then
+    clear
     echo
     echo 'Jellyfin cert patch successfully'
     echo
@@ -132,8 +135,8 @@ fi
 
 #Automated renewal
 echo "0 0 1 */2 *  root  certbot renew --quiet --no-self-upgrade --post-hook 'systemctl reload $ser'" | sudo tee -a /etc/cron.d/renew_certbot
-echo "1 0 1 */2 * sudo openssl pkcs12 -export -out /etc/letsencrypt/live/$Domain/jellyfin.pfx -inkey /etc/letsencrypt/live/$Domain/privkey.pem -in /etc/letsencrypt/live/$Domain/cert.pem -passout pass:" | sudo tee -a /etc/cron.d/renew_certbot
-echo "2 0 1 */2 * cp /etc/letsencrypt/live/$Domain/jellyfin.pfx $path/jellyfin.pfx" | sudo tee -a /etc/cron.d/renew_certbot
+echo "1 0 1 */2 * sudo openssl pkcs12 -export -out /etc/letsencrypt/live/$domain/jellyfin.pfx -inkey /etc/letsencrypt/live/$domain/privkey.pem -in /etc/letsencrypt/live/$Domain/cert.pem -passout pass:" | sudo tee -a /etc/cron.d/renew_certbot
+echo "2 0 1 */2 * cp /etc/letsencrypt/live/$domain/jellyfin.pfx $path/jellyfin.pfx" | sudo tee -a /etc/cron.d/renew_certbot
 echo "3 0 1 */2 * sudo chown jellyfin:jellyfin $path/jellyfin.pfx" | sudo tee -a /etc/cron.d/renew_certbot
 echo "4 0 1 */2 *  sudo systemctl restart jellyfin.service" | sudo tee -a /etc/cron.d/renew_certbot
 if [ -f  /etc/cron.d/renew_certbot ]
