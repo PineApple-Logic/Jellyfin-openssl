@@ -98,6 +98,7 @@ if [ -e "/etc/letsencrypt/live/$Domain/cert.pem" ]
     echo '1. Check for miss entries on the router'
     echo "2. Make sure $ser is running on port 80 (netstat -tulpn) else"
     echo    'change the LAN port forwarding on the router to the port it is running on'
+    exit
 fi
 echo 'Please enter a directory path where you want to save your certificate'
 echo '(Jellyfin must have access to this directory)'
@@ -137,7 +138,7 @@ if [ -f  /etc/cron.d/renew_certbot ]
     clear
 fi
 
-#Reboot
+#Finish line
 echo
 echo '1. Add the jellyfin.pfx file to your SSL cert path in jellyfin,'
 echo   'also finish all other requirments in jelyfin Network https'
