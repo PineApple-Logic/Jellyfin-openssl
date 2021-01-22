@@ -40,10 +40,13 @@ do
 
     fi
 done
-if [ -f /usr/local/bin/$pman ]
+command -v $pman >> pg.txt
+if [ -s pg.txt ]
   then
+    rm -fr pg.txt
     clear
   else
+    rm -fr pg.txt
     clear
     echo Failed to identify your package Manager
     echo Please enter it below
@@ -73,7 +76,7 @@ if [ -s port.txt ]
     rm -fr port.txt
     clear
     echo "Port forward $port to 80 on your router."
-    echo 'must be done to pass the cert test'
+    echo 'Must be done to pass the cert test.'
     echo
     read -p 'Press Enter to continue'
   else
