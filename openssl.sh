@@ -1,5 +1,4 @@
 #!/bin/bash
-
 #Pre-setup
 clear
 echo '1.Apache or 2.Nginx'
@@ -32,7 +31,6 @@ osInfo[/etc/arch-release]=pacman
 osInfo[/etc/gentoo-release]=emerge
 osInfo[/etc/SuSE-release]=zypp
 osInfo[/etc/debian_version]=apt
-
 for f in ${!osInfo[@]}
 do
     if [[ -f $f ]];then
@@ -65,8 +63,6 @@ if [ -f /usr/bin/certbot ]
     echo
     exit
 fi
-
-
 
 #Port Forward
 sudo netstat -anp | grep $ser | awk 'NR==1{print $4}' | grep -Eo '[0-9]{1,4}' | tail -1  >> port.txt
