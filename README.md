@@ -1,4 +1,4 @@
-# JellyfinSSL-Script
+# Jellyfin-openssl
 This script is there to help you setup https for Jellyfin.
 This script only work on linux (for now) a windows version is being worked on.
 
