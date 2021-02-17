@@ -7,16 +7,14 @@ read -p 'Enter a Number:' num
 if [ $num = 1 ]
   then
     ser=apache
-  else
-   if [ $num = 2 ]
-    then
-      ser=nginx
-    else
-      clear
-      echo 'Error invalid number.'
-      sleep 2s
-      ./openssl.sh
-    fi
+elif [ $num = 2 ]
+  then
+    ser=nginx
+else
+    clear
+   echo 'Error invalid number.'
+   sleep 2s
+    ./openssl.sh
  fi
 echo
 read -p 'Email address:' email
