@@ -76,7 +76,7 @@ if [ -s port.txt ]
   else
     rm -fr port.txt
     clear
-    echo "Failed to fined which port number $ser is running on"
+    echo "Failed to fined which port $ser is running on"
     echo
     echo "Make sure $ser is running"
     echo "Try changing the port it is running on."
@@ -149,7 +149,7 @@ echo
 echo '1. Add the jellyfin.pfx file to your SSL cert path in jellyfin,'
 echo   'also finish all other requirments in jelyfin Network https'
 echo
-echo '2. Change port forwarding to 8096 to 80 and 8920 to 443'
+echo '2. Port forwarding LAN 8096 to WAN 80 and LAN 8920 to WAN 443'
 echo
 echo '3. Restart Jellyfin'
 echo
