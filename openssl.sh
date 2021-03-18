@@ -89,11 +89,11 @@ port-forwarding() {
       read -p "Press any key to try again."
       port-forwarding
     fi
-    certs
+    cert
 }
 
 #Get Certs
-certs() {
+cert() {
   if [ $num = 1 ]
   then
     sudo certonly --apache --noninteractive --agree-tos --email $email -d $domain
