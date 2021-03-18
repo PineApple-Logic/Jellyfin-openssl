@@ -69,6 +69,7 @@ requirments() {
 
 #Port Forward
 port-forwarding() {
+  sudo service $ser start
   sudo netstat -anp | grep $ser | awk 'NR==1{print $4}' | grep -Eo '[0-9]{1,4}' | tail -1  >> port.txt
   port=$(<port.txt)
   if [ -s port.txt ]
