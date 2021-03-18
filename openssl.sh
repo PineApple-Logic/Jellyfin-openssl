@@ -58,7 +58,7 @@ requirments() {
       clear
     else
       echo
-      echo 'Failed to install cerbot'
+      echo "Failed to install cerbot, $ser and net-tools"
       echo "Try to install certbot, phython3-cerbot-$ser and net-tools manually"
       echo
       read -p "Press any key to try again."
