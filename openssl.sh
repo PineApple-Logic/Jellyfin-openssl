@@ -19,7 +19,6 @@ pre-setup() {
     fi
     echo
     read -p 'Email address:' email
-    echo
     read -p 'Domain:' domain
     clear
     requirments
@@ -53,14 +52,14 @@ requirments() {
       read -p 'Package Manager:' pman
     fi
     echo 'Installing certbot'
-    sudo $pman install certbot python3-certbot-$ser
+    sudo $pman install certbot python3-certbot-$ser net-tools
     if [ -f /usr/bin/certbot ]
     then
       clear
     else
       echo
       echo 'Failed to install cerbot'
-      echo "Try to install certbot and phython3-cerbot-$ser manually"
+      echo "Try to install certbot, phython3-cerbot-$ser and net-tools manually"
       echo
       read -p "Press any key to try again."
       requirments
@@ -90,7 +89,7 @@ port-forwarding() {
       read -p "Press any key to try again."
       port-forwarding
     fi
-    cert
+    certs
 }
 
 #Get Certs
@@ -127,6 +126,7 @@ path-checker() {
     echo
     path
   fi
+  patch
 }
 
 path() {
@@ -135,6 +135,7 @@ path() {
   echo
   echo 'Example /home/%username$/openssl'
   read -p 'Directory:' path
+  mkdir $path
   path-checker
 }
 
