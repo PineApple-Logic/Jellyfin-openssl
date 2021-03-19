@@ -72,11 +72,21 @@ port-forwarding() {
   sudo service $ser start
   sudo netstat -anp | grep $ser | awk 'NR==1{print $4}' | grep -Eo '[0-9]{1,4}' | tail -1  >> port.txt
   port=$(<port.txt)
-  if [ -s port.txt ]
+  if [ $port != 80]
+  then
+    echo "$ser needs to run on port 80"
+    echo 'to pass the cert challenge'
+    echo "Currently it is running on port $port."
+    echo
+    echo 'Chnage the port number to 80 and restart the services'
+    echo
+    read -p "Press any key to try again."
+    port-forwarding
+  elif [ -s port.txt ]
     then
       rm -fr port.txt
       clear
-      echo "Port forward $port to 80 on your router."
+      echo "Port forward 80 to 80 on your router."
       echo 'Must be done to pass the cert test.'
       echo
       read -p 'Press Enter to continue'
@@ -97,7 +107,7 @@ port-forwarding() {
 cert() {
   if [ $num = 1 ]
   then
-    sudo certonly --apache --noninteractive --agree-tos --email $email -d $domain
+    sudo certbot certonly --apache --noninteractive --agree-tos --email $email -d $domain
   else
     sudo certbot --nginx --agree-tos --redirect --hsts --staple-ocsp --email $email -d $domain
   fi
