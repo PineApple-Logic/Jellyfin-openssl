@@ -209,8 +209,7 @@ renewer() {
 #Reboot
 reboot(){
   echo
-  echo '1. Add the jellyfin.pfx file to your SSL cert path in jellyfin,'
-  echo   'also finish all other requirments in jelyfin, Network, https'
+  echo '1. Add the jellyfin.pfx location to your SSL cert path in jelyfin(Website)>Network>https settings.'
   echo
   echo '2. Change port forwarding to 8096 to 80 and 8920 to 443'
   echo     'Only if you want it to be easly accessed through the domain.'
